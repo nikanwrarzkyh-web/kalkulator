@@ -3,13 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kalkulator</title>
+  <title>Kalkulator Ilmiah</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="calculator">
+    <div class="mode-bar">
+      <span class="mode-label" id="modeLabel">DEG</span>
+      <button class="mode-toggle" onclick="toggleMode()" id="modeToggle">2nd</button>
+    </div>
     <div class="display" id="display">0</div>
-    <div class="buttons">
+    <div class="buttons" id="buttons">
+      <!-- Scientific row -->
+      <button class="btn sci" onclick="scientificFunc('sin')">sin</button>
+      <button class="btn sci" onclick="scientificFunc('cos')">cos</button>
+      <button class="btn sci" onclick="scientificFunc('tan')">tan</button>
+      <button class="btn sci" onclick="scientificFunc('log')">log</button>
+
+      <button class="btn sci" onclick="scientificFunc('ln')">ln</button>
+      <button class="btn sci" onclick="scientificFunc('sqrt')">√</button>
+      <button class="btn sci" onclick="scientificFunc('square')">x²</button>
+      <button class="btn sci" onclick="openParen()">(</button>
+
+      <!-- Main row 1 -->
       <button class="btn utility" id="btnClear" onclick="clearDisplay()">AC</button>
       <button class="btn utility" onclick="negate()">±</button>
       <button class="btn utility" onclick="appendOperator('%')">%</button>

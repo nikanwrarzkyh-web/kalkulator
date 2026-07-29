@@ -16,18 +16,47 @@ body {
 
 .calculator {
   background: #000;
-  padding: 16px;
+  padding: 16px 16px 20px;
   border-radius: 24px;
-  width: 340px;
+  width: 360px;
+}
+
+.mode-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px 8px;
+}
+
+.mode-label {
+  color: #a5a5a5;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.mode-toggle {
+  background: none;
+  border: none;
+  color: #a5a5a5;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.mode-toggle.active {
+  color: #ff9f0a;
 }
 
 .display {
   color: #fff;
-  font-size: 4rem;
+  font-size: 3.2rem;
   font-weight: 300;
   text-align: right;
-  padding: 20px 16px 12px;
-  min-height: 100px;
+  padding: 12px 4px 12px 16px;
+  min-height: 80px;
   overflow: hidden;
   letter-spacing: -1px;
 }
@@ -35,14 +64,14 @@ body {
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 10px;
 }
 
 .btn {
   aspect-ratio: 1;
   border: none;
   border-radius: 50%;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -67,7 +96,7 @@ body {
 .operator {
   background: #ff9f0a;
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 
 .operator:active {
@@ -77,11 +106,21 @@ body {
 .utility {
   background: #a5a5a5;
   color: #000;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 .utility:active {
   background: #d9d9d9;
+}
+
+.sci {
+  background: #2c2c2c;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.sci:active {
+  background: #555;
 }
 
 .zero {
@@ -97,16 +136,5 @@ body {
 }
 
 .equal {
-  font-size: 1.8rem;
-}
-
-@media (max-width: 380px) {
-  .calculator {
-    width: 100%;
-    max-width: 340px;
-    padding: 12px;
-  }
-  .buttons {
-    gap: 10px;
-  }
+  font-size: 1.7rem;
 }
