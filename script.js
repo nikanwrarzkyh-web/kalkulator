@@ -75,18 +75,22 @@ function handleNavClick(e) {
 }
 
 // Mobile menu toggle
-function toggleMobileMenu() {
-  const navLinks = document.querySelector('.nav-links');
-  const hamburger = document.querySelector('.hamburger i');
+  function toggleMobileMenu(e) {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    const navLinks = document.querySelector('.nav-links');
+    const hamburger = document.querySelector('.hamburger i');
 
-  navLinks.classList.toggle('active');
+    navLinks.classList.toggle('active');
 
-  if (navLinks.classList.contains('active')) {
-    hamburger.className = 'fas fa-times';
-  } else {
-    hamburger.className = 'fas fa-bars';
+    if (navLinks.classList.contains('active')) {
+      hamburger.className = 'fas fa-times';
+    } else {
+      hamburger.className = 'fas fa-bars';
+    }
   }
-}
 
 // Navbar scroll effect
 function handleScroll() {
@@ -181,13 +185,16 @@ window.addEventListener('popstate', function(e) {
 });
 
 // Main initialization
-function init() {
-  // Add event listeners
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', handleNavClick);
-  });
-
-  document.querySelector('.hamburger').addEventListener('click', toggleMobileMenu);
+  function init() {
+    // Add event listeners
+    const hamburger = document.querySelector('.hamburger');
+    if (hamburger) {
+      hamburger.addEventListener('click', toggleMobileMenu);
+      hamburger.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        toggleMobileMenu(e);
+      });
+    }
 
   // Add scroll listener
   let lastScrollTop = 0;
@@ -241,23 +248,77 @@ function init() {
   // Add smooth scrolling to all internal links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-      if (this.getAttribute('href') !== '#') {
+      const href = this.getAttribute('href');
+      if (href !== '#') {
         e.preventDefault();
-        smoothScroll(this.getAttribute('href'));
+        const sectionId = href.substring(1);
+
+        // Update active nav state
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        const activeNavLink = document.querySelector(`.nav-link[href="${href}"]`);
+        if (activeNavLink) {
+          activeNavLink.classList.add('active');
+        }
+        currentSection = sectionId;
+
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.remove('active');
+          section.style.display = 'none';
+        });
+
+        // Show target section
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+          targetSection.classList.add('active');
+          targetSection.style.display = 'block';
+
+          // Add fade-in animation
+          setTimeout(() => {
+            targetSection.classList.add('fade-in');
+            const elements = targetSection.querySelectorAll('.info-card, .skill-item, .timeline-item, .portfolio-card, .contact-item, .stat-item');
+            elements.forEach((el, index) => {
+              el.style.animationDelay = `${0.1 + (index * 0.1)}s`;
+              el.classList.add('fade-in');
+            });
+          }, 100);
+
+          // Smooth scroll
+          smoothScroll(href);
+        }
+
+        // Close mobile menu
+        const navLinks = document.querySelector('.nav-links');
+        const hamburgerIcon = document.querySelector('.hamburger i');
+        if (navLinks) navLinks.classList.remove('active');
+        if (hamburgerIcon) hamburgerIcon.className = 'fas fa-bars';
       }
     });
   });
 
   // Close mobile menu when clicking outside
-  document.addEventListener('click', function(e) {
+  function handleOutsideClick(e) {
     const nav = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
-    if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
-      document.querySelector('.nav-links').classList.remove('active');
-      document.querySelector('.hamburger i').className = 'fas fa-bars';
+    if (!hamburger || !navLinks || !nav) return;
+
+    if (hamburger.contains(e.target) || navLinks.contains(e.target)) {
+      return;
     }
-  });
+
+    if (!nav.contains(e.target)) {
+      navLinks.classList.remove('active');
+      const hamburgerIcon = document.querySelector('.hamburger i');
+      if (hamburgerIcon) hamburgerIcon.className = 'fas fa-bars';
+    }
+  }
+
+  document.addEventListener('click', handleOutsideClick);
+  document.addEventListener('touchend', handleOutsideClick);
 
   // Add hover effects for portfolio cards
   document.querySelectorAll('.portfolio-card').forEach(card => {

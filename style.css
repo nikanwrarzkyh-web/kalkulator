@@ -110,6 +110,13 @@ body {
   cursor: pointer;
   font-size: 1.5rem;
   color: var(--text);
+  padding: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  position: relative;
 }
 
 .section {
@@ -686,6 +693,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  .nav-container {
+    position: relative;
+  }
+
   .nav-links {
     position: absolute;
     top: 100%;
@@ -698,6 +709,7 @@ body {
     transform: translateY(-100%);
     transition: transform 0.3s ease;
     opacity: 0;
+    z-index: 1000;
   }
 
   .nav-links.active {
@@ -706,7 +718,7 @@ body {
   }
 
   .hamburger {
-    display: block;
+    display: flex;
   }
 
   .profile-info h1 {
