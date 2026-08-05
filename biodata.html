@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biodata Diri - Nika Nawura Rizkiyah</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      background: rgba(255,255,255,0.2);
+      border: 4px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .name {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .nickname {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2563eb;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-card {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-color: #2563eb;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2563eb;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-item {
+      margin-bottom: 0.6rem;
+      color: #475569;
+    }
+
+    .info-item strong {
+      color: #1e293b;
+    }
+
+    .quote-box {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .quote-text {
+      font-style: italic;
+      color: #92400e;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-author {
+      text-align: right;
+      font-weight: 600;
+      color: #dc2626;
+    }
+
+    .hobby-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid #7dd3fc;
+    }
+
+    .contact-section {
+      background: #f0f9ff;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 2rem;
+      border: 1px solid #bae6fd;
+    }
+
+    .contact-title {
+      color: #1e40af;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.3rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      background: #2563eb;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .contact-info {
+      flex: 1;
+    }
+
+    .contact-label {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-value {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .footer {
+      background: #f8fafc;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1.5rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 1rem;
+        border-radius: 15px;
+      }
+
+      .header {
+        padding: 2rem 1rem;
+      }
+
+      .name {
+        font-size: 1.5rem;
+      }
+
+      .avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .highlight {
+      background: #fef3c7;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #92400e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="avatar">N</div>
+      <div class="name">Nika Nawura Rizkiyah</div>
+      <div class="nickname">Nika</div>
+      </div>
+
+    <div class="content">
+      <div class="section">
+        <div class="section-title">📋 Informasi Pribadi</div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="card-title">📅 Tanggal & Umur</div>
+            <ul class="info-list">
+              <li class="info-item">Tempat Lahir: <strong>Karawang</strong></li>
+              <li class="info-item">Tanggal Lahir: <strong>03 Mei 2009</strong></li>
+              <li class="info-item">Umur: <strong>17 tahun</strong></li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <div class="card-title">👤 Identitas</div>
+            <ul class="info-list">
+              <li class="info-item">Jenis Kelamin: <strong>Perempuan</li>
+              <li class="info-item">Agama: <strong>Islam</li>
+              <li class="info-item">Kewarganegaraan: <strong>Indonesia</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <div class="card-title">📍 Alamat</div>
+            <ul class="info-list">
+              <li class="info-item">Kp Maleber 1, Rt/RW 011/006</li>
+              <li class="info-item">Ds Banyuasih, Kec Banyusari</li>
+              <li class="info-item">Kab Karawang, Jawa Barat</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <div class="card-title">🎓 Pendidikan</div>
+            <ul class="info-list">
+              <li class="info-item">Sekolah: <strong>SMKN 1 Banyusari</li>
+              <li class="info-item">Jurusan: <strong>RPL (Rekayasa Perangkat Lunak)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">🎯 Keinginan & Aspirasi</div>
+        <div class="quote-box">
+          <div class="quote-text">
+            "Harapan saya, setelah saya bekerja saya ingin menabung uang hasil pekerjaan tersebut untuk memulai usaha cake kecil."
+          </div>
+          <div class="quote-author">- Nika Nawura Rizkiyah</div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <h3 style="color: #2563eb; margin-bottom: 1rem;">Keinginan Pribadi:</h3>
+          <ul class="info-list">
+            <li class="info-item">Ingin menjadi pribadi yang lebih baik</li>
+            <li class="info-item">Menguasai skill baru seperti <strong>publik speaking</strong></li>
+            <li class="info-item">Mempelajari <strong>desain Canva</strong></li>
+            <li class="info-item">Mengembangkan keterampilan <strong>editing video</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">🌟 Hobi & Bakat</div>
+        <div class="hobby-tags">
+          <div class="tag">🍳 Masak</div>
+          <div class="tag">💻 Pemrograman</div>
+          <div class="tag">🎨 Desain Kreatif</div>
+          <div class="tag">📝 Menulis</div>
+          <div class="tag">🎥 Editing Video</div>
+          <div class="tag">📚 Pembelajaran</div>
+        </div>
+      </div>
+
+      <div class="contact-section">
+        <h3 class="contact-title">📞 Hubungi Saya</h3>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div class="contact-info">
+              <div class="contact-label">Nomor HP</div>
+              <div class="contact-value">0838-3001-1798</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">💬</div>
+            <div class="contact-info">
+              <div class="contact-label">Media Sosial</div>
+              <div class="contact-value">@nika_rpl</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-info">
+              <div class="contact-label">Email</div>
+              <div class="contact-value">nika@smkn1banyusari.sch.id</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🏫</div>
+            <div class="contact-info">
+              <div class="contact-label">Sekolah</div>
+              <div class="contact-value">SMKN 1 Banyusari</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="cta-button" onclick="shareProfile()">Bagikan Profil</button>
+    </div>
+
+    <div class="footer">
+      © 2025 Biodata Nika Nawura Rizkiyah | Dibuat dengan ❤️ dan Kreativitas
+    </div>
+  </div>
+
+  <script>
+    function shareProfile() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Biodata Nika Nawura Rizkiyah',
+          text: 'Profil pribadi Nika - pelajar RPL SMKN 1 Banyusari',
+          url: window.location.href
+        }).then(() => {
+          console.log('Berhasil dibagikan');
+        }).catch((error) => {
+          console.log('Gagal membagikan:', error);
+          copyToClipboard(window.location.href);
+        });
+      } else {
+        copyToClipboard(window.location.href);
+        alert('Tautan berhasil disalin ke clipboard!');
+      }
+    }
+
+    function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'absolute';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+        } catch (err) {
+          console.error('Gagal menyalin:', err);
+        }
+        document.body.removeChild(textArea);
+      }
+    }
+
+    // Add smooth animations and interactions
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add hover effects to cards
+      const cards = document.querySelectorAll('.info-card, .contact-item, .tag');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-2px)';
+          this.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.1)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = 'none';
+        });
+      });
+
+      // Add interactive button
+      const ctaButton = document.querySelector('.cta-button');
+      if (ctaButton) {
+        ctaButton.addEventListener('mouseenter', function() {
+          this.style.background = 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)';
+        });
+
+        ctaButton.addEventListener('mouseleave', function() {
+          this.style.background = 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)';
+        });
+      }
+
+      // Animate elements on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.info-card, .tag, .contact-item').forEach(el => {
+        observer.observe(el);
+      });
+    });
+
+    // Add CSS for animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Add dynamic effect to header
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.style.padding = '1rem 2rem';
+        header.style.background = 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%);';
+      } else {
+        header.style.padding = '3rem 2rem';
+        header.style.background = 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%);';
+      }
+    });
+  </script>
+</body>
+</html>
